@@ -7,15 +7,18 @@ import moment from 'moment';
 
 import Film from './film.jsx';
 
-import filmJSON from './wiff.json';
-
-console.log(filmJSON[0]);
-
 class List extends React.Component {
-  constructor () {
+
+  constructor (props) {
     super();
 
-    var filmList = filmJSON.map(function(film){
+    this.state = {
+      filmList: this.sortFilmsByMoment(this.momentizeFilmDates(props.filmList))
+    };
+  }
+
+  momentizeFilmDates (list) {
+    return list.map(function(film){
       return {
         title: film.Title,
         venue: film.Venue,
@@ -24,17 +27,14 @@ class List extends React.Component {
         reference: film.Reference
       }
     });
+  }
 
-    filmList = filmList.sort(function(a, b){
-      console.log(a.start.valueOf());
+  sortFilmsByMoment (list) {
+    return list.sort(function(a, b){
       if (a.start.valueOf() < b.start.valueOf()) return -1;
       if (a.start.valueOf() > b.start.valueOf()) return 1;
       return 0;
     });
-
-    this.state = {
-      filmList: filmList
-    };
   }
 
   render () {
