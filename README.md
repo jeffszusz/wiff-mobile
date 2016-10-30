@@ -11,6 +11,7 @@ You may need to reference
 - webpack
 - babel
 
+### Install and run with:
 ```
 npm install
 npm run dev
