@@ -5,6 +5,5 @@ import filmList from './wiff.json';
 
 import Layout from './layout.jsx';
 
-console.log(filmList[0]);
 render(<Layout/>, document.getElementById('application'));
 

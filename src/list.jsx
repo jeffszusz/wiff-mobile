@@ -6,6 +6,7 @@ import React from 'react';
 import moment from 'moment';
 
 import Film from './film.jsx';
+import filmListFormatter from './film_list_formatter.jsx';
 
 class List extends React.Component {
 
@@ -13,28 +14,8 @@ class List extends React.Component {
     super();
 
     this.state = {
-      filmList: this.sortFilmsByMoment(this.momentizeFilmDates(props.filmList))
+      filmList: filmListFormatter(props.filmList)
     };
-  }
-
-  momentizeFilmDates (list) {
-    return list.map(function(film){
-      return {
-        title: film.Title,
-        venue: film.Venue,
-        start: moment(film.Date + ' ' + film["Start Time"]),
-        end: moment(film.Date + ' ' + film["End Time"]),
-        reference: film.Reference
-      }
-    });
-  }
-
-  sortFilmsByMoment (list) {
-    return list.sort(function(a, b){
-      if (a.start.valueOf() < b.start.valueOf()) return -1;
-      if (a.start.valueOf() > b.start.valueOf()) return 1;
-      return 0;
-    });
   }
 
   render () {
