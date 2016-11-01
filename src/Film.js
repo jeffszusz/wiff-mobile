@@ -10,30 +10,22 @@ class Film extends React.Component {
     super();
 
     this.state = {
+      showDetails: false,
       omdb: null
     }
   }
 
-  isActive () {
-    return this.props.activeFilm === this;
+  toggleDetails (e) {
+    this.setState({showDetails: !this.state.showDetails}, () => {
+      if (this.state.showDetails) {
+        this.fetchOmdbData();
+      }
+    });
   }
 
-
-  detailsShown () {
-    return this.isActive() ? 'shown' : 'hidden';
-  }
-
-  setActive (e) {
-    if (this.props.activeFilm === this) {
-      this.props.setActiveFilm({});
-    } else {
-      this.props.setActiveFilm(this);
-      this.getOMDBData();
-    }
-  }
-
-  getOMDBData () {
+  fetchOmdbData () {
     if (this.state.omdb) { return }
+    this.setState({omdb: {}}); // pending, don't ask again
 
     var query = 'http://www.omdbapi.com/' +
       '?t=' + this.props.data.title +
@@ -43,11 +35,19 @@ class Film extends React.Component {
       .then((response) => {
         return response.json();
       }).then((json) => {
-        this.setState({'omdb': json});
+        this.setState({omdb: json});
       });
+
+  }
+
+  getYear () {
+    if (this.props.data.year && this.state.showDetails) {
+      return '(' + this.props.data.year + ')'
+    }
   }
 
   render() {
+    console.log('render');
 
     var date = this.props.data.start.format("ddd, MMM DD");
     var start = this.props.data.start.format("H:mm A").replace(/\s/g, '\u00a0');
@@ -56,20 +56,21 @@ class Film extends React.Component {
     var runtime = <div>{this.props.data.runtime} minutes</div>
 
     return (
-      <div className="row film-item" onClick={this.setActive.bind(this)}>
+      <div className="row film-item" onClick={this.toggleDetails.bind(this)}>
         <div className="seven columns">
-          <h3 className="film-title">{this.props.data.title}&nbsp;
-          {this.isActive() ? '(' + this.props.data.year + ')' : null}</h3>
+          <h3 className="film-title">
+            {this.props.data.title} {this.getYear()}
+          </h3>
           <h4 className="film-venue">{this.props.data.venue}</h4>
         </div>
         <div className="five columns">
           <div className="showing-time">
             <b>{date}</b><br /> {start} - {end}
-            {this.isActive() ? runtime : null}
+            {this.state.showDetails ? runtime : null}
           </div>
         </div>
         <FilmDetail data={this.props.data}
-          showDetails={this.detailsShown()}
+          showDetails={this.state.showDetails ? 'shown' : 'hidden'}
           omdb={this.state.omdb} />
       </div>
     );

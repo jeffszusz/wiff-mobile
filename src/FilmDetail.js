@@ -32,7 +32,7 @@ class FilmDetail extends React.Component {
     if (this.props.omdb) {
       return (
         <div className="film-poster">
-          <img src={this.props.omdb.Poster} />
+          <img alt="Film Poster" src={this.props.omdb.Poster} />
         </div>
       )
     }

@@ -13,12 +13,13 @@ function filmListFormatter (json) {
 
 function momentizeFilmDates (list) {
 
-  films = list.map(function(film){
+  films = list.map(function(film, index){
     var start = moment(film.Date + ' ' + film["Start Time"], 'MM/DD/YYYY H:mm A');
     var end = moment(film.Date + ' ' + film["End Time"], 'MM/DD/YYYY H:mm A');
     var runtime = moment.duration(end.diff(start)).asMinutes();
 
     return {
+      id: index.toString(),
       title: film.Title,
       venue: film.Venue,
       start: start,
