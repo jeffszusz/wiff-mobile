@@ -29,11 +29,20 @@ class FilmDetail extends React.Component {
   }
 
   getPoster () {
-    if (this.props.omdb) {
+    if (this.props.omdb && this.props.omdb.Poster
+        && this.props.omdb.Poster != "N/A") {
+      return <img alt="Film Poster" src={this.props.omdb.Poster} />
+    } else {
+      return <div className='no-image'>No Image Available</div>
+    }
+  }
+
+  getImdbButton () {
+    if (this.props.omdb && this.props.omdb.imdbID) {
       return (
-        <div className="film-poster">
-          <img alt="Film Poster" src={this.props.omdb.Poster} />
-        </div>
+        <button onClick={this.gotoIMDB.bind(this)}>
+          Internet Movie Database
+        </button>
       )
     }
   }
@@ -42,14 +51,13 @@ class FilmDetail extends React.Component {
   render () {
     return (
       <div className={"film-detail " + this.props.showDetails}>
-        {this.getPoster()}
+        <div className="film-poster">
+          {this.getPoster()}
+        </div>
         {this.getGenre()}
         {this.getPlot()}
         <button className="button-primary" onClick={this.gotoWIFF.bind(this)}>
           Windsor International Film Festival
-        </button>
-        <button onClick={this.gotoIMDB.bind(this)}>
-          Internet Movie Database
         </button>
       </div>
     )

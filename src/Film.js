@@ -50,8 +50,8 @@ class Film extends React.Component {
     console.log('render');
 
     var date = this.props.data.start.format("ddd, MMM DD");
-    var start = this.props.data.start.format("H:mm A").replace(/\s/g, '\u00a0');
-    var end = this.props.data.end.format("H:mm A").replace(/\s/g, '\u00a0');
+    var start = this.props.data.start.format("h:mm A").replace(/\s/g, '\u00a0');
+    var end = this.props.data.end.format("h:mm A").replace(/\s/g, '\u00a0');
 
     var runtime = <div>{this.props.data.runtime} minutes</div>
 

@@ -22,6 +22,7 @@
   display: block;
   float: right;
   width: 50%;
+  min-height: 50px;
   text-align: center;
   margin: 10px 0px;
 }
@@ -29,6 +30,10 @@
 .film-poster img {
   max-height: 200px;
   max-width: 90%;
+}
+
+.film-poster .no-image {
+  color: gray;
 }
 
 button, .button, .button-primary {

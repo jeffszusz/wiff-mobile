@@ -11,12 +11,18 @@ function filmListFormatter (json) {
   return films
 }
 
+function getRuntime(start, end) {
+  var duration = moment.duration(end.diff(start)).asMinutes();
+  if (duration > 0) return duration;
+  else return duration + 1440; // correct for the rollover at midnight
+}
+
 function momentizeFilmDates (list) {
 
   films = list.map(function(film, index){
     var start = moment(film.Date + ' ' + film["Start Time"], 'MM/DD/YYYY H:mm A');
     var end = moment(film.Date + ' ' + film["End Time"], 'MM/DD/YYYY H:mm A');
-    var runtime = moment.duration(end.diff(start)).asMinutes();
+    var runtime = getRuntime(start, end);
 
     return {
       id: index.toString(),
