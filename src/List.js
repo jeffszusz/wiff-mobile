@@ -10,13 +10,24 @@ class List extends React.Component {
     super();
 
     this.state = {
-      filmList: filmListFormatter(props.filmList)
+      filmList: filmListFormatter(props.filmList),
+      activeFilm: {}
     };
   }
 
+  setActiveFilm (film) {
+    //console.log('setting ' + this.props.data.title + ' as activeFilm');
+    this.setState({activeFilm: film});
+  }
+
   render () {
-    var films = this.state.filmList.map(function(data, index){
-      return <Film key={index} data={data} />
+    var films = this.state.filmList.map((data, index) => {
+      return (
+        <Film key={index}
+              data={data}
+              activeFilm={this.state.activeFilm}
+              setActiveFilm={this.setActiveFilm.bind(this)} />
+      )
     });
 
     return (

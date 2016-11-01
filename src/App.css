@@ -1,5 +1,6 @@
-body {
-  background: #eee;
+.App.container {
+  background-color: #e94c26;
+  overflow:hidden;
 }
 
 .App-logo {
@@ -8,6 +9,7 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
+  filter: invert(100%);
 }
 
 @keyframes App-logo-spin {
@@ -25,6 +27,7 @@ body {
   display: inline-block;
   text-align: center;
   margin-right: 50px;
+  color: #fff;
 }
 
 .App-header h1 {

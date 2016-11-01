@@ -13,7 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <div className="App-header-text">
             <h1>WIFF</h1>
-            <h2>On Deck</h2>
+            <h2>Films On Deck</h2>
           </div>
         </div>
         <List filmList={filmJSON} />

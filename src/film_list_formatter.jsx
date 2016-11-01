@@ -4,6 +4,8 @@ var films;
 
 function filmListFormatter (json) {
 
+  console.log('original json', json[0]);
+
   momentizeFilmDates(json)
   sortFilmsByMoment()
   hideOldFilms()
@@ -14,12 +16,17 @@ function filmListFormatter (json) {
 function momentizeFilmDates (list) {
 
   films = list.map(function(film){
+    var start = moment(film.Date + ' ' + film["Start Time"], 'MM/DD/YYYY H:mm A');
+    var end = moment(film.Date + ' ' + film["End Time"], 'MM/DD/YYYY H:mm A');
+    var runtime = moment.duration(end.diff(start)).asMinutes();
+
     return {
       title: film.Title,
       venue: film.Venue,
-      start: moment(film.Date + ' ' + film["Start Time"]),
-      end: moment(film.Date + ' ' + film["End Time"]),
-      reference: film.Reference
+      start: start,
+      end: end,
+      runtime: runtime,
+      year: film.Year
     }
   });
 
