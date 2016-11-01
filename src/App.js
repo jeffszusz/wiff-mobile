@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import logo from './filmreel.png';
-import './normalize.css';
-import './skeleton.css';
 import './App.css';
+
+import List from './List.js';
+import filmJSON from './wiff.json';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
+      <div className="App container">
+        <div className="App-header row">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <div className="App-header-text">
+            <h1>WIFF</h1>
+            <h2>On Deck</h2>
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <List filmList={filmJSON} />
+        <div className="App-footer">Copyright &copy; Bull Rush Studios Inc.</div>
       </div>
     );
   }

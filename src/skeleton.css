@@ -48,8 +48,8 @@
     padding: 0; }
 }
 
-/* For devices larger than 550px */
-@media (min-width: 550px) {
+/* For devices larger than 375px (iPhone 6) */
+@media (min-width: 375px) {
   .container {
     width: 80%; }
   .column,

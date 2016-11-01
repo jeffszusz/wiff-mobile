@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './normalize.css';
+import './skeleton.css';
+
 import App from './App';
-import './index.css';
+
 
 ReactDOM.render(
   <App />,

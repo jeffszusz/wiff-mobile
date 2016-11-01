@@ -1,0 +1,24 @@
+.film-item.row {
+  background: #fff;
+  padding: 8px;
+  margin: 0px 2px 2px 0px;
+  box-shadow: 4px 4px 10px #444;
+}
+
+.film-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #F9A710;
+}
+
+.film-venue {
+  font-size: 1.5rem;
+}
+
+.film-title, .film-venue {
+  margin-bottom: 0.5rem;
+}
+
+/*.row:hover, .row:active {*/
+  /*background: #eef;*/
+/*}*/
