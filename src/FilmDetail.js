@@ -5,7 +5,6 @@ class FilmDetail extends React.Component {
 
 
   gotoWIFF (e) {
-    // TODO open in new tab
     e.stopPropagation();
 
     window.open('http://www.windsorfilmfestival.com/films/' +
@@ -13,7 +12,6 @@ class FilmDetail extends React.Component {
   }
 
   gotoIMDB (e) {
-    //TODO
     e.stopPropagation();
     window.open('http://imdb.com/title/' + this.props.omdb.imdbID);
   }

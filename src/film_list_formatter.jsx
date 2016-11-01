@@ -4,8 +4,6 @@ var films;
 
 function filmListFormatter (json) {
 
-  console.log('original json', json[0]);
-
   momentizeFilmDates(json)
   sortFilmsByMoment()
   hideOldFilms()
