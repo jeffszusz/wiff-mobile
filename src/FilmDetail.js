@@ -59,6 +59,7 @@ class FilmDetail extends React.Component {
         <button className="button-primary" onClick={this.gotoWIFF.bind(this)}>
           Windsor International Film Festival
         </button>
+        {this.getImdbButton()}
       </div>
     )
   }
